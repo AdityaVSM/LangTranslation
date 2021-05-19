@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText inputText;
     private TextView outputText;
     private Button goButton;
-    FirebaseLanguageIdentification languageIdentifier =
-            FirebaseNaturalLanguage.getInstance().getLanguageIdentification();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void identifyLanguageUsingFirebase(String text){
-        FirebaseLanguageIdentification languageIdentifier =
-                FirebaseNaturalLanguage.getInstance().getLanguageIdentification();
+        FirebaseLanguageIdentification languageIdentifier = FirebaseNaturalLanguage.getInstance().getLanguageIdentification();
         languageIdentifier.identifyLanguage(text)
                 .addOnSuccessListener(
                         new OnSuccessListener<String>() {
@@ -55,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
                                     Locale loc = new Locale(languageCode);
                                     outputText.setText("The text is in " + loc.getDisplayLanguage());
                                 } else {
-                                    Toast.makeText(MainActivity.this,
-                                            "Language could not be identified",
-                                            Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this,"Language could not be identified",Toast.LENGTH_LONG).show();
                                 }
                             }
                         })
@@ -65,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.e("Language id", "exception processing " + e);
-                                Toast.makeText(MainActivity.this,
-                                        "Language could not be identified",
-                                        Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this,"Language could not be identified",Toast.LENGTH_LONG).show();
                             }
                         });
     }
