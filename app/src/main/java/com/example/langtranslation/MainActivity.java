@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
                                     //create Locale object to convert
                                     //BCP language code to language name
                                     Locale loc = new Locale(languageCode);
-                                    outputText.setText("The text is in " + loc.getDisplayLanguage());
+//                                  outputText.setText("The text is in " + loc.getDisplayLanguage());
+                                    if(!loc.getDisplayLanguage().equals("English")){
+                                        openDialog();
+                                    }
                                 } else {
                                     Toast.makeText(MainActivity.this,"Language could not be identified",Toast.LENGTH_LONG).show();
                                 }
@@ -64,5 +67,10 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,"Language could not be identified",Toast.LENGTH_LONG).show();
                             }
                         });
+    }
+
+    public void openDialog(){
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(), "example dialog");
     }
 }
